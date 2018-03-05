@@ -22,7 +22,7 @@ You can choose between ,using tags, various branch versions of nzbget, no tag is
 Add one of the tags,  if required,  to the linuxserver/nzbget line of the run/create command in the following format, linuxserver/nzbget:testing
 
 #### Tags
-+ **testing**
++ **latest**
 
 ## Parameters
 
