@@ -13,39 +13,39 @@ ARG NZBGET_BRANCH="stable-download"
 RUN \
  echo "**** install packages ****" && \
  apk add --no-cache \
-	curl \
-	p7zip \
-	python2 \
-	unrar \
-	wget && \
+    curl \
+    p7zip \
+    python2 \
+    unrar \
+    wget && \
  echo "**** install nzbget ****" && \
  mkdir -p \
-	/app/nzbget && \
+    /app/nzbget && \
  curl -o \
  /tmp/json -L \
-	http://nzbget.net/info/nzbget-version-linux.json && \
+    http://nzbget.net/info/nzbget-version-linux.json && \
  NZBGET_VERSION=$(grep "${NZBGET_BRANCH}" /tmp/json  | cut -d '"' -f 4) && \
  curl -o \
  /tmp/nzbget.run -L \
-	"${NZBGET_VERSION}" && \
+    "${NZBGET_VERSION}" && \
  sh /tmp/nzbget.run --destdir /app/nzbget && \
  echo "**** configure nzbget ****" && \
  cp /app/nzbget/nzbget.conf /defaults/nzbget.conf && \
  sed -i \
-	-e "s#\(MainDir=\).*#\1/downloads#g" \
-	-e "s#\(ScriptDir=\).*#\1$\{MainDir\}/scripts#g" \
-	-e "s#\(WebDir=\).*#\1$\{AppDir\}/webui#g" \
-	-e "s#\(ConfigTemplate=\).*#\1$\{AppDir\}/webui/nzbget.conf.template#g" \
+    -e "s#\(MainDir=\).*#\1/downloads#g" \
+    -e "s#\(ScriptDir=\).*#\1$\{MainDir\}/scripts#g" \
+    -e "s#\(WebDir=\).*#\1$\{AppDir\}/webui#g" \
+    -e "s#\(ConfigTemplate=\).*#\1$\{AppDir\}/webui/nzbget.conf.template#g" \
  /defaults/nzbget.conf && \
  echo "**** cleanup ****" && \
  rm -rf \
-	/tmp/*
+    /tmp/*
 
 RUN \
  echo "**** install packages ****" && \
  apk add --no-cache \
-	ffmpeg \
-	git && \
+    ffmpeg \
+    git && \
  curl https://bootstrap.pypa.io/ez_setup.py -o - | python && \
  easy_install pip && \
  pip install requests \
