@@ -1,0 +1,24 @@
+#!/usr/bin/with-contenv bash
+
+# delete lock file if found
+[[ -f /downloads/nzbget.lock ]] && \
+	rm /downloads/nzbget.lock
+
+# check if config file exists in /config
+[[ ! -f /config/nzbget.conf ]] && \
+	cp /defaults/nzbget.conf /config/nzbget.conf
+
+# pull the latest mp4_automator
+cd /mp4automator && \
+    git pull && \
+    cd /
+
+# permissions
+chown abc:abc \
+	/downloads
+chown abc:abc -R \
+	/app/nzbget \
+	/config \
+	/mp4automator
+chmod u+rw \
+	/config/nzbget.conf
