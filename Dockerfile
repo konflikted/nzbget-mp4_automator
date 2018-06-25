@@ -64,7 +64,7 @@ RUN \
  chown -R abc:abc /mp4automator
 
 # add local files
-COPY root/ /
+COPY / /
 
 # ports and volumes
 VOLUME /config /downloads
