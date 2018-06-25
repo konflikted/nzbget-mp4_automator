@@ -3,7 +3,7 @@
 umask 022
 
 # Copy the autoProcess.ini script from mp4_automator if not available
-[[ ! -f /mp4automator/autoProcess.ini ]] && (cp /mp4automator/autoProcess.ini.sample /config/autoProcess.ini)
+[[ ! -f /config/autoProcess.ini ]] && (cp /mp4automator/autoProcess.ini.sample /config/autoProcess.ini)
 
 # Copy the NZBGetPostProcess script from mp4_automator
 [[ ! -d /config/scripts/ ]] && (mkdir /config/scripts)
